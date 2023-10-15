@@ -2,6 +2,7 @@
 from pathlib import Path
 
 from source.logger import get_logger
+from source.persistence_layers.WeatherDatabase import WeatherDatabase
 
 
 BASE_DIR_PATH = Path(__file__).resolve().parent
@@ -22,3 +23,4 @@ LOGGER = get_logger(
 )
 
 WEATHER_DB_DIR_PATH = BASE_DIR_PATH
+WEATHER_DB = WeatherDatabase()
