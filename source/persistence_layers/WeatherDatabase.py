@@ -36,7 +36,7 @@ class WeatherDatabase(PersistenceLayer):
         Args:
             weather_data: словарь, увязывающий названия столбцов с их значениями
         """
-        self.db.add(self.table_name, weather_data.__dict__)
+        self.db.add(self.table_name, dict(weather_data))
 
     def select(self, criteria: dict = None, order_by: str = None) -> list[WeatherData]:
         """Метод возврата списка прогноза погоды из БД.
@@ -54,7 +54,7 @@ class WeatherDatabase(PersistenceLayer):
                 criteria=criteria,
                 order_by=order_by
         ).fetchall():
-            selected_records.append(WeatherData(*record[1:]))
+            selected_records.append(WeatherData(*record))
         return selected_records
 
     def update(self, ind, weather_data: WeatherData):
@@ -64,7 +64,7 @@ class WeatherDatabase(PersistenceLayer):
             ind: номер строки
             weather_data: словарь данных для обновления
         """
-        self.db.update(self.table_name, {'id': ind}, weather_data.__dict__)
+        self.db.update(self.table_name, {'id': ind}, dict(weather_data))
 
     def delete(self, ind):
         """Метод удаления строки из таблицы БД.
