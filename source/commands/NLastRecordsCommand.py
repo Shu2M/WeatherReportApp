@@ -2,7 +2,7 @@
 import typing
 
 from source.commands.Command import Command
-from source import exceptions
+from settings import WEATHER_DB
 
 
 class NLastRecordsCommand(Command):
@@ -20,4 +20,16 @@ class NLastRecordsCommand(Command):
         Raises:
             ExitException: исключение выхода из цикла меню
         """
-        return True, None
+        all_records = WEATHER_DB.select(order_by='id')
+
+        if not all_records:
+            result = 'Записи отсутствуют'
+        elif len(all_records) < additional_data.n:
+            result = 'Введенное число превышает количество записей в БД, ' \
+                     'поэтому будут выведены все результаты\n\n'
+            for record in all_records:
+                result += str(record)
+        else:
+            result = all_records[-additional_data.n:]
+
+        return True, result
