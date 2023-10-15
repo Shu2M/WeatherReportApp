@@ -17,8 +17,8 @@ class NLastRecordsCommand(Command):
         Args:
             additional_data: дополнительные данные (не требуются)
 
-        Raises:
-            ExitException: исключение выхода из цикла меню
+        Returns:
+            статус, результат работы команды
         """
         if additional_data.n <= 0:
             return True, 'Недопустимое вводимое значение. ' \
