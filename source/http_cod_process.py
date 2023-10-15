@@ -17,12 +17,22 @@ def process_ok_response(weather_data: dict) -> WeatherData:
     Returns:
         объект WeatherData
     """
+    timezone = datetime.timezone(
+        datetime.timedelta(seconds=float(weather_data['timezone']))
+    )
     weather_report = WeatherData(
-        current_time=str(datetime.datetime.now()),
+        current_time=datetime.datetime.fromtimestamp(
+            float(weather_data['dt']),
+            timezone
+        ),
         city_name=weather_data['name'],
         weather_conditions=weather_data['weather'][0]['description'],
-        current_temperature=round(weather_data['main']['temp'] - ZERO_BY_KELVIN),
-        perceived_temperature=round(weather_data['main']['feels_like'] - ZERO_BY_KELVIN),
+        current_temperature=round(
+            weather_data['main']['temp'] - ZERO_BY_KELVIN,
+        ),
+        perceived_temperature=round(
+            weather_data['main']['feels_like'] - ZERO_BY_KELVIN,
+        ),
         wind_speed=round(weather_data['wind']['speed']),
     )
     WEATHER_DB.add(weather_data=weather_report)
