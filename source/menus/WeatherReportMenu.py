@@ -25,6 +25,10 @@ class WeatherReportMenu(Menu):
             2: Option(
                 name='По координате',
                 command=WeatherReportByCoordinateCommand(),
+                prep_call=get_parameterized_user_input_function(
+                    lat=('Введите координату по широте', float),
+                    lon=('Введите координату по долготе', float)
+                ),
                 success_message='{result}',
             ),
             3: Option(
