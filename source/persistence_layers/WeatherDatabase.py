@@ -1,6 +1,7 @@
 """Реализация слоя постоянства данных для хранения записей о погоде."""
 from source.persistence_layers.PersistenceLayer import PersistenceLayer
 from source.Sqlite3Manager import Sqlite3Manager
+from source.WeatherData import WeatherData
 
 
 class WeatherDatabase(PersistenceLayer):
@@ -37,14 +38,24 @@ class WeatherDatabase(PersistenceLayer):
         """
         self.db.add(self.table_name, weather_data)
 
-    def select(self, criteria: dict = None, order_by: str = None):
+    def select(self, criteria: dict = None, order_by: str = None) -> list[WeatherData]:
         """Метод возврата списка прогноза погоды из БД.
 
         Args:
             criteria: словарь критериев сортировки
             order_by: название столбца для сортировки результатов
+
+        Returns:
+            список с объектами WeatherData
         """
-        return self.db.select(self.table_name, order_by=order_by).fetchall()
+        selected_records = []
+        for record in self.db.select(
+                self.table_name,
+                criteria=criteria,
+                order_by=order_by
+        ).fetchall():
+            selected_records.append(WeatherData(*record[1:]))
+        return selected_records
 
     def update(self, ind, weather_data):
         """Метод обновления записи прогноза в выбранной строке.
