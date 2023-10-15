@@ -1,12 +1,13 @@
 """Модуль датакласса данных о погоде."""
 from dataclasses import dataclass
+import datetime
 
 
 @dataclass
 class WeatherData:
     """Датакласс данных погоды."""
 
-    current_time: str = ''
+    current_time: datetime.datetime = ''
     city_name: str = ''
     weather_conditions: str = ''
     current_temperature: int = 0
