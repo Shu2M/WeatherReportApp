@@ -20,6 +20,10 @@ class NLastRecordsCommand(Command):
         Raises:
             ExitException: исключение выхода из цикла меню
         """
+        if additional_data.n <= 0:
+            return True, 'Недопустимое вводимое значение. ' \
+                         'Требуется ввести число больше нуля'
+
         all_records = WEATHER_DB.select(order_by='id')
 
         if not all_records:
