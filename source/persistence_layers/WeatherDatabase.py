@@ -30,13 +30,13 @@ class WeatherDatabase(PersistenceLayer):
             'wind_speed': 'integer',
         })
 
-    def add(self, weather_data: dict):
+    def add(self, weather_data: WeatherData):
         """Метод добавления записи прогноза погоды в ДБ.
 
         Args:
             weather_data: словарь, увязывающий названия столбцов с их значениями
         """
-        self.db.add(self.table_name, weather_data)
+        self.db.add(self.table_name, weather_data.__dict__)
 
     def select(self, criteria: dict = None, order_by: str = None) -> list[WeatherData]:
         """Метод возврата списка прогноза погоды из БД.
@@ -57,14 +57,14 @@ class WeatherDatabase(PersistenceLayer):
             selected_records.append(WeatherData(*record[1:]))
         return selected_records
 
-    def update(self, ind, weather_data):
+    def update(self, ind, weather_data: WeatherData):
         """Метод обновления записи прогноза в выбранной строке.
 
         Args:
             ind: номер строки
             weather_data: словарь данных для обновления
         """
-        self.db.update(self.table_name, {'id': ind}, weather_data)
+        self.db.update(self.table_name, {'id': ind}, weather_data.__dict__)
 
     def delete(self, ind):
         """Метод удаления строки из таблицы БД.
