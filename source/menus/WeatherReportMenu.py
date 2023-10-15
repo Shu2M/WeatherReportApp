@@ -4,6 +4,7 @@ from source.Option import Option
 from source.commands.WeatherReportByCityCommand import WeatherReportByCityCommand
 from source.commands.WeatherReportByCoordinateCommand import WeatherReportByCoordinateCommand
 from source.commands.BackMenuCommand import BackMenuCommand
+from source.input_output_interface import get_parameterized_user_input_function
 
 
 class WeatherReportMenu(Menu):
@@ -16,6 +17,9 @@ class WeatherReportMenu(Menu):
             1: Option(
                 name='По городу',
                 command=WeatherReportByCityCommand(),
+                prep_call=get_parameterized_user_input_function(
+                    city_name=('Введите название города', str)
+                ),
                 success_message='{result}',
             ),
             2: Option(
