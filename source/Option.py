@@ -42,10 +42,17 @@ class Option(object):
             additional_data=additional_data,
         )
 
+        formatted_result = ''
+        if isinstance(command_result, list):
+            for record in command_result:
+                formatted_result += str(record)
+        else:
+            formatted_result = command_result
+
         if status:
             io_interface.print_execute_result(
                 self.success_message,
-                command_result,
+                formatted_result,
             )
 
     def __str__(self):
