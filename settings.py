@@ -23,4 +23,8 @@ LOGGER = get_logger(
 )
 
 WEATHER_DB_DIR_PATH = BASE_DIR_PATH
-WEATHER_DB = WeatherDatabase()
+WEATHER_DB_NAME = 'weather_reports'
+WEATHER_DB = WeatherDatabase(
+    table_name=WEATHER_DB_NAME,
+    table_path=str(BASE_DIR_PATH / f'{WEATHER_DB_NAME}.db'),
+)
