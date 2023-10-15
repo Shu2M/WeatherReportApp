@@ -20,6 +20,6 @@ class ClearDatabaseCommand(Command):
         Returns:
             статус, результат работы команды
         """
-        for i in range(len(WEATHER_DB.select(order_by='id')), 0, -1):
-            WEATHER_DB.delete(ind=i)
+        for record in WEATHER_DB.select(order_by='id'):
+            WEATHER_DB.delete(record.id)
         return True, None
