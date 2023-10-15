@@ -4,6 +4,8 @@ from pathlib import Path
 from source.logger import get_logger
 from source.persistence_layers.WeatherDatabase import WeatherDatabase
 
+OPEN_WEATHER_API_KEY = '46208a181766ce910ad223a592d91bc9'
+OPEN_WEATHER_URL = 'http://api.openweathermap.org/data/2.5/weather?'
 
 BASE_DIR_PATH = Path(__file__).resolve().parent
 
@@ -28,3 +30,5 @@ WEATHER_DB = WeatherDatabase(
     table_name=WEATHER_DB_NAME,
     table_path=str(BASE_DIR_PATH / f'{WEATHER_DB_NAME}.db'),
 )
+
+ZERO_BY_KELVIN = 273
