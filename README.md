@@ -30,12 +30,12 @@ SQL. В приложении реализованны следующие пол�
 ### 3. Пример работы приложения
 Главное меню:
 
-![alt text](http://url/to/main_menu.png)
+![main_menu](https://github.com/Shu2M/WeatherReportApp/assets/90965198/a8ee945f-2cfb-477d-a72a-5732c44188ce)
 
 Меню опции прогноз погоды:
 
-![alt text](http://url/to/weather_report_menu.png)
+![weather_report_menu](https://github.com/Shu2M/WeatherReportApp/assets/90965198/bbd52fd7-9f82-40e4-b869-8299aa27d30f)
 
 Пример выполнения команды прогноза погоды по городу:
 
-![alt text](http://url/to/weather_report_by_city.png)
+![weather_report_by_city](https://github.com/Shu2M/WeatherReportApp/assets/90965198/661831c6-d8de-4db6-9e51-b7f0d14574e8)
