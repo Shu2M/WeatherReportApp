@@ -3,6 +3,7 @@ from source.menus.Menu import Menu
 from source.Option import Option
 from source.commands.WeatherReportByCityCommand import WeatherReportByCityCommand
 from source.commands.WeatherReportByCoordinateCommand import WeatherReportByCoordinateCommand
+from source.commands.WeatherReportByCurrentLocationCommand import WeatherReportByCurrentLocationCommand
 from source.commands.BackMenuCommand import BackMenuCommand
 from source.input_output_interface import get_parameterized_user_input_function
 
@@ -32,6 +33,11 @@ class WeatherReportMenu(Menu):
                 success_message='{result}',
             ),
             3: Option(
+                name='По текущему местоположению',
+                command=WeatherReportByCurrentLocationCommand(),
+                success_message='{result}',
+            ),
+            4: Option(
                 name='Вернуться в главное меню',
                 command=BackMenuCommand(),
                 success_message='',
