@@ -32,9 +32,9 @@ class NLastRecordsCommand(Command):
             result = f'Введенное число превышает количество записей в БД ' \
                      f'({len(all_records)}), поэтому будут выведены все ' \
                      f'результаты\n\n'
-            for record in all_records:
+            for record in reversed(all_records):
                 result += str(record)
         else:
-            result = all_records[-additional_data.n:]
+            result = list(reversed(all_records[-additional_data.n:]))
 
         return True, result
