@@ -29,8 +29,9 @@ class NLastRecordsCommand(Command):
         if not all_records:
             result = 'Записи отсутствуют'
         elif len(all_records) < additional_data.n:
-            result = 'Введенное число превышает количество записей в БД, ' \
-                     'поэтому будут выведены все результаты\n\n'
+            result = f'Введенное число превышает количество записей в БД ' \
+                     f'({len(all_records)}), поэтому будут выведены все ' \
+                     f'результаты\n\n'
             for record in all_records:
                 result += str(record)
         else:
