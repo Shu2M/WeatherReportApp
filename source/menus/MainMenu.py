@@ -4,6 +4,7 @@ from source.Option import Option
 from source.commands.GoToWeatherReportMenuCommand import GoToCurveMenuCommand
 from source.commands.NLastRecordsCommand import NLastRecordsCommand
 from source.commands.BackMenuCommand import BackMenuCommand
+from source.commands.ClearDatabaseCommand import ClearDatabaseCommand
 from source.input_output_interface import get_parameterized_user_input_function
 
 
@@ -28,6 +29,11 @@ class MainMenu(Menu):
                 success_message='{result}',
             ),
             3: Option(
+                name='Очистить БД',
+                command=ClearDatabaseCommand(),
+                success_message='БД очищена',
+            ),
+            4: Option(
                 name='Завершить работу приложения',
                 command=BackMenuCommand(),
                 success_message='',
